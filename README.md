@@ -1,0 +1,1 @@
+# Sprints is an application based off of a few University projects that I've done and likely the basis for further projects as it grows and develops. The main purpose of the application is to help an athlete perform interval excercises, with an intended focus on sprint intervals. This application is inspired by the U.S. Army Physical fitness program.
