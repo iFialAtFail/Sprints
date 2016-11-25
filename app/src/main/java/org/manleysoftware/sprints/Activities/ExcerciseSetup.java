@@ -21,7 +21,7 @@ public class ExcerciseSetup extends AppCompatActivity {
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_setup);
+		setContentView(R.layout.activity_excercise_setup);
 
 		Button btnGoStartRun = (Button)findViewById(R.id.btnGoStartRun);
 		if (btnGoStartRun != null){
