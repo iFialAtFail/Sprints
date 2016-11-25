@@ -72,10 +72,10 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="16dp"/>
 
-    <Chronometer
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/chronoOverallTimeElapsed"
+        android:id="@+id/tvOverallTimeElapsed"
         app:layout_constraintTop_toTopOf="@+id/guideline"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         android:layout_marginBottom="8dp"
@@ -99,7 +99,7 @@
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/chronoOverallTimeElapsed"
+        app:layout_constraintBottom_toTopOf="@+id/tvOverallTimeElapsed"
         android:layout_marginBottom="8dp"/>
 
     <Button
@@ -124,10 +124,10 @@
         tools:layout_editor_absoluteX="194dp"
         app:layout_constraintGuide_percent="0.5052083"/>
 
-    <Chronometer
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/chronoShortCountDown"
+        android:id="@+id/tvShortCountDown"
         app:layout_constraintRight_toLeftOf="@+id/guideline3"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
@@ -141,7 +141,7 @@
     <Chronometer
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/chronoLongCountDown"
+        android:id="@+id/tvLongCountDown"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
         app:layout_constraintBottom_toTopOf="@+id/btnEndRun"
         android:layout_marginBottom="8dp"
