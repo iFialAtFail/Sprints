@@ -33,6 +33,7 @@ public class SprintOptions extends AppCompatActivity {
 				public void onClick(View view) {
 					Intent intent = new Intent(context, ExcerciseSetup.class);
 					intent.putExtra(EXCERCISE_KEY, SHORT_EXCERCISE_OPTION);
+					startActivity(intent);
 				}
 			});
 		}
@@ -44,6 +45,7 @@ public class SprintOptions extends AppCompatActivity {
 				public void onClick(View view) {
 					Intent intent = new Intent(context, ExcerciseSetup.class);
 					intent.putExtra(EXCERCISE_KEY, LONG_EXCERCISE_OPTION);
+					startActivity(intent);
 				}
 			});
 		}

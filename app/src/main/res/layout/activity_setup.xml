@@ -32,16 +32,23 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_below="@id/radioButtonOptionsText"
-            android:layout_margin="5dp">
+            android:layout_margin="5dp"
+            android:checkedButton="@+id/rb0warmup">
+
             <RadioButton
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:id="@+id/rb0warmup"/>
+
             <RadioButton
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:id="@+id/rb5warmup"/>
             <RadioButton
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:id="@+id/rb10warmup"/>
         </RadioGroup>
         <RadioGroup
             android:id="@+id/radioButtonCoolDownGroup"
@@ -49,16 +56,21 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_below="@id/radioButtonWarmupGroup"
-            android:layout_margin="5dp">
+            android:layout_margin="5dp"
+            android:checkedButton="@+id/rb0cooldown">
             <RadioButton
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:id="@+id/rb0cooldown"/>
             <RadioButton
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:id="@+id/rb5cooldown"/>
             <RadioButton
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:id="@+id/rb10cooldown"/>
         </RadioGroup>
 
         <TextView
@@ -99,19 +111,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true">
+            android:layout_centerHorizontal="true"
+            android:checkedButton="@+id/rbTone">
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Voice"/>
+                android:text="Voice"
+                android:id="@+id/rbVoice"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Whistle"/>
+                android:text="Whistle"
+                android:id="@+id/rbWhistle"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tone"/>
+                android:text="Tone"
+                android:checked="false"
+                android:id="@+id/rbTone"/>
         </RadioGroup>
     </RelativeLayout>
     <LinearLayout
@@ -134,7 +151,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="GO!!!"
-        android:id="@+id/button"
+        android:id="@+id/btnGoStartRun"
         android:layout_gravity="center"
         android:layout_weight="1"/>
 

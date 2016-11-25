@@ -17,7 +17,7 @@
         </activity>
         <activity android:name=".Activities.SprintOptions"/>
         <activity android:name=".Activities.ExcerciseSetup"/>
-        <activity android:name=".Activities.Runtime"/>
+        <activity android:name=".Activities.SprintsRuntime"/>
     </application>
 
 </manifest>
