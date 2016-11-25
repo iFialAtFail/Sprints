@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 
 import org.manleysoftware.sprints.R;
@@ -24,7 +25,13 @@ public class SprintsRuntime extends AppCompatActivity {
 
 		Button btnEndRun = (Button) findViewById(R.id.btnEndRun);
 		if (btnEndRun != null){
-			Intent intent = new Intent(context, MainMenu.class);
+			btnEndRun.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					Intent intent = new Intent(context, MainMenu.class);
+					startActivity(intent);
+				}
+			});
 		}
 	}
 }
