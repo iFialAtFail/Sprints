@@ -7,7 +7,7 @@
                                              android:layout_height="match_parent">
 
     <Button
-        android:text="Button"
+        android:text="30/60"
         android:id="@+id/btn30_60"
         android:layout_height="100dp"
         android:layout_marginStart="16dp"
@@ -20,7 +20,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         android:layout_marginBottom="8dp"
-        tools:text="30/60"
         android:layout_width="200dp"/>
 
     <Button
