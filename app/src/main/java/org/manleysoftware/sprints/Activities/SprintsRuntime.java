@@ -25,43 +25,58 @@ public class SprintsRuntime extends AppCompatActivity {
 	Intent intent;
 	CountDownTimer shortTimer;
 	CountDownTimer longTimer;
+	CountDownTimer mainTimer;
 
+	boolean timerStarted = false;
+	boolean shortCounter = false;
+	boolean longCounter = true;
+	long timeRemaining;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_runtime);
 		intent = getIntent();
+		timeRemaining = intent.getLongExtra(ExcerciseSetup.TIME_IN_MILIS,0) - TimeUnit.SECONDS.toMillis(60);
 
-		shortTimer = new CountDownTimer(TimeUnit.SECONDS.toMillis(30),0) {
+		final TextView tvShort = (TextView)findViewById(R.id.tvShortCountDown);
+		final TextView tvLong = (TextView) findViewById(R.id.tvLongCountDown);
+
+		shortTimer = new CountDownTimer(TimeUnit.SECONDS.toMillis(30),100) {
 			@Override
 			public void onTick(long l) {
-
+				tvShort.setText(String.valueOf((l + 1000)/1000));
 			}
 
 			@Override
 			public void onFinish() {
+				tvShort.setText("0");
 				Toast.makeText(context,"30 seconds up",Toast.LENGTH_LONG).show();
 			}
 		};
 
-		longTimer = new CountDownTimer(TimeUnit.SECONDS.toMillis(60),0) {
+		longTimer = new CountDownTimer(TimeUnit.SECONDS.toMillis(60),100) {
 			@Override
 			public void onTick(long l) {
-
+				tvLong.setText(String.valueOf((l + 1000)/1000));
 			}
 
 			@Override
 			public void onFinish() {
+				tvLong.setText("0");
 				Toast.makeText(context,"60 seconds up",Toast.LENGTH_LONG).show();
 			}
 		};
+		longTimer.start();
 
 		Button btnEndRun = (Button) findViewById(R.id.btnEndRun);
 		if (btnEndRun != null){
 			btnEndRun.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
+					longTimer.cancel();
+					shortTimer.cancel();
+					mainTimer.cancel();
 					Intent intent = new Intent(context, MainMenu.class);
 					startActivity(intent);
 				}
@@ -74,16 +89,39 @@ public class SprintsRuntime extends AppCompatActivity {
 			//tvElapsedTime.setText(time);
 		}
 
-		CountDownTimer mainTimer = new CountDownTimer(intent.getLongExtra(ExcerciseSetup.TIME_IN_MILIS,0), 100 ) {
+		mainTimer = new CountDownTimer(intent.getLongExtra(ExcerciseSetup.TIME_IN_MILIS,0), 100 ) {
+
 			@Override
 			public void onTick(long l) {
-				tvElapsedTime.setText("Seconds remaining: " + l / 1000);
+				tvElapsedTime.setText("Seconds remaining: " + (l + 1000) / 1000);
+
+				if (l <= timeRemaining && longCounter == true){
+					shortTimer.start();
+					timeRemaining -= TimeUnit.SECONDS.toMillis(30);
+					longCounter = false;
+					shortCounter = true;
+				}
+
+				else if (l <= timeRemaining && shortCounter == true){
+					longTimer.start();
+					timeRemaining -= TimeUnit.SECONDS.toMillis(60);
+					longCounter = true;
+					shortCounter = false;
+				}
 			}
 
 			@Override
 			public void onFinish() {
 				tvElapsedTime.setText("Finished");
+				longTimer.cancel();
+				shortTimer.cancel();
+				timerStarted = false;
+				longCounter = false;
+				shortCounter = false;
 			}
 		}.start();
+		timerStarted = true;
 	}
+
+
 }

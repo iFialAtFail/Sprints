@@ -25,7 +25,7 @@
                 android:inputType="number"
                 android:ems="10"
                 android:id="@+id/editTextHours"
-                android:text="hh"
+                android:text="0"
                 android:textAlignment="center"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
                 android:id="@+id/editTextMinutes"
                 android:inputType="number"
                 android:ems="10"
-                android:text="mm"
+                android:text="5"
                 android:textAlignment="center"/>
         </LinearLayout>
 
