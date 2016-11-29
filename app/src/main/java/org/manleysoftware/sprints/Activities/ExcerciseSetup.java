@@ -24,6 +24,7 @@ public class ExcerciseSetup extends AppCompatActivity {
 	Context context = this;
 	EditText editTextHours;
 	EditText editTextMinutes;
+	Intent intent;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class ExcerciseSetup extends AppCompatActivity {
 				public void onClick(View view) {
 					Intent intent = new Intent(context, SprintsRuntime.class);
 					intent.putExtra(TIME_IN_MILIS,tryParseTime());
+					intent.putExtra(SprintOptions.EXCERCISE_KEY, getExcerciseOptionFromIntent());
 					startActivity(intent);
 				}
 			});
@@ -54,6 +56,16 @@ public class ExcerciseSetup extends AppCompatActivity {
 			return hoursInMillis + minutesInMillis;
 		} else{
 			return 0;
+		}
+	}
+
+	private String getExcerciseOptionFromIntent(){
+		intent = getIntent();
+		if (intent != null){
+			return intent.getStringExtra(SprintOptions.EXCERCISE_KEY);
+		}
+		else{
+			return "";
 		}
 	}
 }
