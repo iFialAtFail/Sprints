@@ -27,6 +27,8 @@ public class SprintsRuntime extends AppCompatActivity {
 	CountDownTimer longTimer;
 	CountDownTimer mainTimer;
 
+
+
 	boolean timerStarted = false;
 	boolean shortCounter = false;
 	boolean longCounter = true;
@@ -123,5 +125,8 @@ public class SprintsRuntime extends AppCompatActivity {
 		timerStarted = true;
 	}
 
+	private void getSprintPreferenceRefs(){
+		//TODO get sprint preferences for counters.
+	}
 
 }
