@@ -21,30 +21,35 @@ import java.util.concurrent.TimeUnit;
 
 public class SprintsRuntime extends AppCompatActivity {
 
-	Context context = this;
-	Intent intent;
-	CountDownTimer shortTimer;
-	CountDownTimer longTimer;
-	CountDownTimer mainTimer;
+	private Context context = this;
+	private CountDownTimer shortTimer;
+	private CountDownTimer longTimer;
+	private CountDownTimer mainTimer;
+
+	private long sprintTime;
+	private long walkTime;
 
 
-
-	boolean timerStarted = false;
-	boolean shortCounter = false;
-	boolean longCounter = true;
-	long timeRemaining;
+	private boolean timerStarted = false;
+	private boolean shortCounter = false;
+	private boolean longCounter = true;
+	private long timeRemaining;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_runtime);
-		intent = getIntent();
-		timeRemaining = intent.getLongExtra(ExcerciseSetup.TIME_IN_MILIS,0) - TimeUnit.SECONDS.toMillis(60);
+		Intent intent = getIntent();
+
+
+		String exerciseOption = intent.getStringExtra(SprintOptions.EXCERCISE_KEY);
+		setSprintPreferences(exerciseOption);
+		timeRemaining = (intent.getLongExtra(ExcerciseSetup.TIME_IN_MILIS,0) - walkTime);
 
 		final TextView tvShort = (TextView)findViewById(R.id.tvShortCountDown);
 		final TextView tvLong = (TextView) findViewById(R.id.tvLongCountDown);
 
-		shortTimer = new CountDownTimer(TimeUnit.SECONDS.toMillis(30),100) {
+		shortTimer = new CountDownTimer(sprintTime,100) {
 			@Override
 			public void onTick(long l) {
 				tvShort.setText(String.valueOf((l + 1000)/1000));
@@ -53,11 +58,11 @@ public class SprintsRuntime extends AppCompatActivity {
 			@Override
 			public void onFinish() {
 				tvShort.setText("0");
-				Toast.makeText(context,"30 seconds up",Toast.LENGTH_LONG).show();
+				Toast.makeText(context,String.valueOf(TimeUnit.MILLISECONDS.toSeconds(sprintTime)) +" seconds up",Toast.LENGTH_LONG).show();
 			}
 		};
 
-		longTimer = new CountDownTimer(TimeUnit.SECONDS.toMillis(60),100) {
+		longTimer = new CountDownTimer(walkTime,100) {
 			@Override
 			public void onTick(long l) {
 				tvLong.setText(String.valueOf((l + 1000)/1000));
@@ -66,7 +71,7 @@ public class SprintsRuntime extends AppCompatActivity {
 			@Override
 			public void onFinish() {
 				tvLong.setText("0");
-				Toast.makeText(context,"60 seconds up",Toast.LENGTH_LONG).show();
+				Toast.makeText(context,String.valueOf(TimeUnit.MILLISECONDS.toSeconds(walkTime)) +" seconds up",Toast.LENGTH_LONG).show();
 			}
 		};
 		longTimer.start();
@@ -99,14 +104,14 @@ public class SprintsRuntime extends AppCompatActivity {
 
 				if (l <= timeRemaining && longCounter == true){
 					shortTimer.start();
-					timeRemaining -= TimeUnit.SECONDS.toMillis(30);
+					timeRemaining -= sprintTime;
 					longCounter = false;
 					shortCounter = true;
 				}
 
 				else if (l <= timeRemaining && shortCounter == true){
 					longTimer.start();
-					timeRemaining -= TimeUnit.SECONDS.toMillis(60);
+					timeRemaining -= walkTime;
 					longCounter = true;
 					shortCounter = false;
 				}
@@ -125,8 +130,17 @@ public class SprintsRuntime extends AppCompatActivity {
 		timerStarted = true;
 	}
 
-	private void getSprintPreferenceRefs(){
-		//TODO get sprint preferences for counters.
+	private void setSprintPreferences(String prefs){
+		switch (prefs){
+			case SprintOptions.LONG_EXCERCISE_OPTION:
+				sprintTime = TimeUnit.SECONDS.toMillis(60);
+				walkTime = TimeUnit.SECONDS.toMillis(120);
+				break;
+			case SprintOptions.SHORT_EXCERCISE_OPTION:
+				sprintTime = TimeUnit.SECONDS.toMillis(30);
+				walkTime = TimeUnit.SECONDS.toMillis(60);
+				break;
+		}
 	}
 
 }
